@@ -327,3 +327,12 @@ body { overflow-x: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* The active theme uses the same transparent overlay header on both pages. */
+.menu-page .floating-header { background: transparent; }
+.menu-page .floating-header.is-sticky { background: rgba(0, 120, 154, .8); }
+
+@media (max-width: 767px) {
+  .menu-page .floating-header,
+  .menu-page .floating-header.is-sticky { background: #1f95b5; }
+}
