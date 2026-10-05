@@ -3,6 +3,11 @@ menuStyles.rel = 'stylesheet';
 menuStyles.href = '/menu.css';
 document.head.append(menuStyles);
 
+const originalStyles = document.createElement('link');
+originalStyles.rel = 'stylesheet';
+originalStyles.href = '/original.css';
+document.head.append(originalStyles);
+
 const toggle = document.querySelector('[data-menu-toggle]');
 const nav = document.querySelector('[data-nav]');
 
