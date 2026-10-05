@@ -1,19 +1,13 @@
-.floating-header {
-  background: transparent;
-  box-shadow: none;
-  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
-}
-
 @font-face {
-  font-family: Tide;
+  font-family: TideSans;
   src: url('/assets/TideSans-500Dudette.ttf') format('truetype');
   font-style: normal;
-  font-weight: 100 700;
+  font-weight: 300 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: Tide;
+  font-family: TideSans;
   src: url('/assets/TideSans-800Kahuna.ttf') format('truetype');
   font-style: normal;
   font-weight: 800 900;
@@ -21,29 +15,37 @@
 }
 
 html,
-body {
-  overflow-x: hidden;
-}
+body { overflow-x: hidden; }
 
-.opening-copy.reveal,
-.opening-copy.reveal.is-visible {
-  transform: translate(-50%, -50%);
+.floating-header {
+  background: transparent;
+  box-shadow: none;
+  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
 }
 
 .floating-header.is-sticky {
-  background: rgba(0, 120, 154, .9);
-  box-shadow: 0 4px 18px rgba(0, 10, 63, .16);
+  height: 70px;
+  background: rgba(0, 120, 154, .8);
+  box-shadow: 0 3px 12px rgba(0, 10, 63, .14);
 }
 
+.floating-header .logo-sticky { display: none; }
+.floating-header.is-sticky .logo-main { display: none; }
+.floating-header.is-sticky .logo-sticky {
+  display: block;
+  width: 130px;
+  height: auto;
+}
+.floating-header.is-sticky .floating-logo {
+  width: 130px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
 .floating-header.is-sticky .desktop-nav a {
   color: #fff;
-}
-
-@media (max-width: 900px) {
-  .floating-header,
-  .floating-header.is-sticky {
-    background: #004f6c;
-  }
+  padding-top: 22px;
+  padding-bottom: 18px;
 }
 
 @media (max-width: 1240px) {
@@ -51,135 +53,277 @@ body {
   .menu-toggle { display: block; margin-left: auto; }
 }
 
-.original-slider .slider-frame {
+.home-page {
+  margin: 0;
+  color: #626262;
+  font: 400 15px/21px Lato, Arial, sans-serif;
+}
+
+.home-page h1,
+.home-page h2,
+.home-page h3,
+.home-page h4 {
+  margin: 0;
+  font-family: TideSans, Arial, sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.home-page h2 {
+  font-size: 42px;
+  line-height: 35px;
+  font-weight: 300;
+}
+
+.home-page h4 {
+  font-size: 22px;
+  line-height: 25px;
+  font-weight: 300;
+}
+
+.home-page .floating-header {
+  position: absolute;
+  height: 130px;
+  padding: 10px 4vw;
+}
+
+.home-page .floating-header.is-sticky {
+  position: fixed;
+  height: 70px;
+}
+
+.home-page .floating-logo {
+  width: 150px;
+  height: 150px;
+}
+
+.home-page .floating-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.home-page .desktop-nav {
+  align-self: flex-start;
+  gap: 34px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.home-page .desktop-nav a {
+  padding: 42px 0 20px;
+  color: #288ba1;
+  font: 600 20px/20px TideSans, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.home-page .desktop-nav a.current::after,
+.home-page .desktop-nav a:hover::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  bottom: 12px;
+  width: 80%;
+  height: 4px;
+  background: #fff;
+}
+
+.exact-hero {
+  position: relative;
   display: grid;
   place-items: center;
-}
-
-.slide-copy {
-  width: min(1100px, 88vw);
-  text-align: center;
-  color: #fff;
-  opacity: 0;
-  transform: translateY(18px);
-  animation: slideCopy 36s infinite;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, .8);
-}
-
-.slide-two .slide-copy { animation-delay: 9s; }
-.slide-three .slide-copy { animation-delay: 18s; }
-.slide-four .slide-copy { animation-delay: 27s; }
-
-.slide-copy h1 {
-  margin: 0 0 34px;
-  font: 700 clamp(3.4rem, 7vw, 6.8rem)/.95 Tide, Arial, sans-serif;
-}
-
-.slide-copy p {
-  margin-bottom: 18px;
-  font-size: clamp(.85rem, 1.5vw, 1.15rem);
-  letter-spacing: .24em;
-}
-
-.slide-copy a {
-  display: inline-block;
-  border: 2px solid currentColor;
-  padding: 12px 26px;
-  font-size: 13px;
-  letter-spacing: .14em;
-}
-
-.slide-copy img {
-  width: min(300px, 55vw);
-  margin: 0 auto 22px;
-}
-
-.slide-one .slide-copy { color: #004f6c; text-shadow: 0 2px 5px rgba(255,255,255,.35); }
-
-@keyframes slideCopy {
-  0%, 2% { opacity: 0; transform: translateY(18px); }
-  4%, 21% { opacity: 1; transform: none; }
-  23%, 100% { opacity: 0; transform: translateY(-12px); }
-}
-
-.food-accordion {
-  display: flex;
   width: 100%;
-  height: 600px;
-  overflow: hidden;
-  background: #000a3f;
-  box-shadow: 0 8px 24px rgba(0, 10, 63, .2);
+  min-height: 680px;
+  height: 100vh;
+  background: url('/assets/simply-hooked-main-hero.jpg') center center / cover no-repeat;
 }
 
-.accordion-panel {
+.exact-hero h1 {
   position: relative;
-  flex: 1 1 0;
-  min-width: 0;
-  overflow: hidden;
-  cursor: pointer;
-  background-image: linear-gradient(rgba(0,10,63,.1),rgba(0,10,63,.34)), var(--panel-image);
-  background-size: cover;
-  background-position: center;
-  transition: flex-basis 700ms ease, flex-grow 700ms ease;
-  outline: 0;
+  top: 89px;
+  color: #004f6c;
+  font-family: Oswald, Impact, sans-serif;
+  font-size: clamp(48px, 6.25vw, 90px);
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.accordion-panel.is-open { flex-grow: 12; }
+.exact-hero .scroll-cue {
+  bottom: 185px;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  color: #fff;
+  font: 700 48px/38px Arial, sans-serif;
+}
 
-.accordion-closed {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 15px 12px;
+.exact-hero .scroll-cue span { transform: translateY(-5px); }
+.exact-hero .scroll-cue:hover { color: #00789a; border-color: #00789a; }
+
+.exact-inner {
+  position: relative;
+  z-index: 2;
+  width: min(1220px, calc(100% - 66px));
+  margin: 0 auto;
+}
+
+.exact-about,
+.exact-gallery {
+  position: relative;
+  padding: 140px 0 100px;
+  color: #fff;
+  background: #00789a;
+}
+
+.exact-about h2,
+.exact-gallery h2,
+.exact-commitment h2 { text-align: center; }
+
+.exact-wave {
   width: 100%;
-  background: rgba(0,0,0,.72);
-  color: #fff;
-  font-size: 18px;
-  line-height: 1.1;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  opacity: 1;
-  transition: opacity 400ms ease;
+  background-repeat: repeat;
+  background-position: left bottom;
+}
+.wave-1 { height: 65px; background-image: url('/assets/waves_1.png'); }
+.wave-3 { height: 68px; margin-top: 20px; background-image: url('/assets/waves_3.png'); }
+.wave-4 {
+  width: 66.666%;
+  height: 61px;
+  margin: 0 auto 20px;
+  background-image: url('/assets/waves_4.png');
 }
 
-.accordion-panel.is-open .accordion-closed { opacity: 0; }
+.exact-about > .exact-inner > h4 { padding: 34px 1% 15px; }
 
-.accordion-open {
+.exact-copy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.exact-copy-grid h4 { padding: 34px 1% 15px; }
+.exact-copy-grid h4:first-child { width: 83.333%; }
+
+.exact-full-image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.exact-full-image img {
+  width: 100%;
+  height: auto;
+}
+.mobile-feature { display: none; }
+
+.exact-commitment {
+  position: relative;
+  padding: 140px 0 100px;
+  color: #626262;
+  background: #fff;
+}
+
+.exact-commitment::before {
+  content: "";
   position: absolute;
-  left: 7%;
-  top: 70%;
-  color: #fff;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 400ms ease 100ms, transform 400ms ease 100ms;
-  text-shadow: 1px 1px 5px rgba(0,0,0,.8);
+  inset: 0;
+  z-index: 1;
+  opacity: .3;
+  background: url('/assets/simply-hooked-ocean-bakcground-400.jpg') left top / 400px 400px repeat;
 }
 
-.accordion-panel.is-open .accordion-open { opacity: 1; transform: none; }
-.accordion-open h2 { margin-bottom: 8px; font-size: clamp(2rem, 3vw, 3.2rem); line-height: 1; color: #fff; }
-.accordion-open h4 { margin: 0 0 18px; }
-.accordion-open a { display: inline-block; margin-top: 12px; border: 2px solid #fff; padding: 11px 22px; font-size: 12px; letter-spacing: .12em; }
+.exact-commitment h4 { padding: 34px 1% 15px; }
 
-@media (max-width: 768px) {
-  .food-accordion { height: 600px; flex-direction: column; }
-  .accordion-panel { display: none; min-height: 72px; transition: flex-basis 700ms ease, flex-grow 700ms ease; }
-  .accordion-panel.is-mobile-visible { display: block; }
-  .accordion-panel.is-open { flex-grow: 7; }
-  .accordion-closed { writing-mode: horizontal-tb; transform: none; padding: 10px 14px; font-size: 14px; }
-  .accordion-open { left: 7%; top: auto; bottom: 8%; right: 7%; }
-  .accordion-open h2 { font-size: 1.8rem; }
-  .slide-copy h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
+.exact-ocean {
+  min-height: 320px;
+  background: url('/assets/underwater_01.jpg') center top / cover no-repeat fixed;
 }
 
-@media (max-width: 520px) {
-  .opening-hero { min-height: 600px; height: 100svh; }
-  .slider-frame { background-attachment: scroll; }
-  .slide-copy { width: 88vw; }
-  .slide-copy h1 { margin-bottom: 24px; font-size: clamp(2.4rem, 13vw, 4rem); }
-  .slide-copy p { letter-spacing: .13em; }
-  .sea-panel, .commitment-panel, .contact-panel { padding-left: 20px; padding-right: 20px; }
-  .section-inner { width: 100%; }
-  .split-copy { gap: 24px; }
-  .gallery-grid { gap: 6px; }
+.exact-gallery h2 { margin-bottom: 50px; color: #fff; }
+
+.exact-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+
+.exact-gallery-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.exact-footer {
+  padding: 30px 5%;
+  border-top: 1px solid rgba(255,255,255,.1);
+  background: #004f6c;
+  color: #9fa4bd;
+  text-align: center;
+}
+
+.exact-footer p { margin: 0; font-size: 14px; }
+
+@media (max-width: 767px) {
+  .home-page { font-size: 15px; line-height: 23px; }
+  .home-page h2 { font-size: 39px; line-height: 39px; }
+  .home-page h4 { font-size: 20px; line-height: 30px; }
+
+  .home-page .floating-header,
+  .home-page .floating-header.is-sticky {
+    position: absolute;
+    height: 90px;
+    padding: 4px 16px;
+    background: #1f95b5;
+  }
+
+  .home-page .floating-logo,
+  .home-page .floating-header.is-sticky .floating-logo {
+    width: 82px;
+    height: 82px;
+  }
+  .home-page .floating-header .logo-main {
+    display: block;
+    content: url('/assets/Simply-Hooked-Logo-white-400.png');
+  }
+  .home-page .floating-header .logo-sticky { display: none; }
+
+  .exact-hero { min-height: 620px; height: 100svh; background-attachment: scroll; }
+  .exact-hero h1 {
+    top: 48px;
+    width: calc(100% - 36px);
+    font-size: clamp(38px, 12vw, 66px);
+    line-height: 1.02;
+    text-align: center;
+    white-space: normal;
+  }
+  .exact-hero .scroll-cue { bottom: 70px; }
+
+  .exact-inner { width: calc(100% - 66px); }
+  .exact-about,
+  .exact-commitment,
+  .exact-gallery { padding: 80px 0 60px; }
+
+  .exact-copy-grid { grid-template-columns: 1fr; }
+  .exact-copy-grid h4:first-child { width: 100%; }
+  .wave-4 { width: 100%; }
+
+  .desktop-feature { display: none; }
+  .mobile-feature { display: block; }
+
+  .exact-ocean {
+    min-height: 320px;
+    background-attachment: scroll;
+  }
+
+  .exact-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 420px) {
+  .exact-inner { width: calc(100% - 40px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
