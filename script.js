@@ -18,6 +18,32 @@ const updateHeader = () => header?.classList.toggle('is-sticky', window.scrollY 
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
+const accordion = document.querySelector('[data-accordion]');
+const accordionPanels = [...document.querySelectorAll('.accordion-panel')];
+let accordionIndex = 0;
+let accordionTimer;
+
+const openAccordionPanel = (panel) => {
+  accordionIndex = accordionPanels.indexOf(panel);
+  accordionPanels.forEach((item) => item.classList.toggle('is-open', item === panel));
+};
+
+const startAccordion = () => {
+  clearInterval(accordionTimer);
+  accordionTimer = setInterval(() => {
+    accordionIndex = (accordionIndex + 1) % accordionPanels.length;
+    openAccordionPanel(accordionPanels[accordionIndex]);
+  }, 4000);
+};
+
+accordionPanels.forEach((panel) => {
+  panel.addEventListener('mouseenter', () => openAccordionPanel(panel));
+  panel.addEventListener('focusin', () => openAccordionPanel(panel));
+});
+accordion?.addEventListener('mouseenter', () => clearInterval(accordionTimer));
+accordion?.addEventListener('mouseleave', startAccordion);
+if (accordionPanels.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) startAccordion();
+
 const toggle = document.querySelector('[data-menu-toggle]');
 const nav = document.querySelector('[data-nav]');
 
