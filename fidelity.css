@@ -4,6 +4,16 @@
   transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+.opening-copy.reveal,
+.opening-copy.reveal.is-visible {
+  transform: translate(-50%, -50%);
+}
+
 .floating-header.is-sticky {
   background: rgba(0, 120, 154, .9);
   box-shadow: 0 4px 18px rgba(0, 10, 63, .16);
