@@ -1,10 +1,10 @@
-const header = document.querySelector('[data-header]');
+const menuStyles = document.createElement('link');
+menuStyles.rel = 'stylesheet';
+menuStyles.href = '/menu.css';
+document.head.append(menuStyles);
+
 const toggle = document.querySelector('[data-menu-toggle]');
 const nav = document.querySelector('[data-nav]');
-
-const syncHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 30);
-syncHeader();
-window.addEventListener('scroll', syncHeader, { passive: true });
 
 toggle?.addEventListener('click', () => {
   const open = toggle.getAttribute('aria-expanded') === 'true';
