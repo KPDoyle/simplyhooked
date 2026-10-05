@@ -1,0 +1,21 @@
+.floating-header {
+  background: transparent;
+  box-shadow: none;
+  transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
+}
+
+.floating-header.is-sticky {
+  background: rgba(0, 120, 154, .9);
+  box-shadow: 0 4px 18px rgba(0, 10, 63, .16);
+}
+
+.floating-header.is-sticky .desktop-nav a {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .floating-header,
+  .floating-header.is-sticky {
+    background: #004f6c;
+  }
+}

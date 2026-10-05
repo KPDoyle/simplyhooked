@@ -8,6 +8,16 @@ originalStyles.rel = 'stylesheet';
 originalStyles.href = '/original.css';
 document.head.append(originalStyles);
 
+const fidelityStyles = document.createElement('link');
+fidelityStyles.rel = 'stylesheet';
+fidelityStyles.href = '/fidelity.css';
+document.head.append(fidelityStyles);
+
+const header = document.querySelector('.floating-header');
+const updateHeader = () => header?.classList.toggle('is-sticky', window.scrollY > 36);
+updateHeader();
+window.addEventListener('scroll', updateHeader, { passive: true });
+
 const toggle = document.querySelector('[data-menu-toggle]');
 const nav = document.querySelector('[data-nav]');
 
