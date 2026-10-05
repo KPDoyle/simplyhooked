@@ -25,7 +25,13 @@ let accordionTimer;
 
 const openAccordionPanel = (panel) => {
   accordionIndex = accordionPanels.indexOf(panel);
-  accordionPanels.forEach((item) => item.classList.toggle('is-open', item === panel));
+  const mobileAccordion = window.matchMedia('(max-width: 768px)').matches;
+  accordionPanels.forEach((item, index) => {
+    const isOpen = item === panel;
+    item.classList.toggle('is-open', isOpen);
+    item.classList.toggle('is-mobile-visible', !mobileAccordion || index === accordionIndex || index === (accordionIndex + 1) % accordionPanels.length);
+    item.setAttribute('aria-expanded', String(isOpen));
+  });
 };
 
 const startAccordion = () => {
@@ -39,9 +45,12 @@ const startAccordion = () => {
 accordionPanels.forEach((panel) => {
   panel.addEventListener('mouseenter', () => openAccordionPanel(panel));
   panel.addEventListener('focusin', () => openAccordionPanel(panel));
+  panel.addEventListener('click', () => openAccordionPanel(panel));
 });
 accordion?.addEventListener('mouseenter', () => clearInterval(accordionTimer));
 accordion?.addEventListener('mouseleave', startAccordion);
+window.addEventListener('resize', () => openAccordionPanel(accordionPanels[accordionIndex]));
+if (accordionPanels.length) openAccordionPanel(accordionPanels[0]);
 if (accordionPanels.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) startAccordion();
 
 const toggle = document.querySelector('[data-menu-toggle]');

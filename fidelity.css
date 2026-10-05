@@ -4,6 +4,22 @@
   transition: background-color .25s ease, height .25s ease, box-shadow .25s ease;
 }
 
+@font-face {
+  font-family: Tide;
+  src: url('/assets/TideSans-500Dudette.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Tide;
+  src: url('/assets/TideSans-800Kahuna.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 800 900;
+  font-display: swap;
+}
+
 html,
 body {
   overflow-x: hidden;
@@ -28,6 +44,11 @@ body {
   .floating-header.is-sticky {
     background: #004f6c;
   }
+}
+
+@media (max-width: 1240px) {
+  .desktop-nav { display: none; }
+  .menu-toggle { display: block; margin-left: auto; }
 }
 
 .original-slider .slider-frame {
@@ -142,9 +163,23 @@ body {
 
 @media (max-width: 768px) {
   .food-accordion { height: 600px; flex-direction: column; }
-  .accordion-panel { min-height: 42px; transition: flex-basis 700ms ease, flex-grow 700ms ease; }
+  .accordion-panel { display: none; min-height: 72px; transition: flex-basis 700ms ease, flex-grow 700ms ease; }
+  .accordion-panel.is-mobile-visible { display: block; }
+  .accordion-panel.is-open { flex-grow: 7; }
   .accordion-closed { writing-mode: horizontal-tb; transform: none; padding: 10px 14px; font-size: 14px; }
   .accordion-open { left: 7%; top: auto; bottom: 8%; right: 7%; }
   .accordion-open h2 { font-size: 1.8rem; }
   .slide-copy h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
+}
+
+@media (max-width: 520px) {
+  .opening-hero { min-height: 600px; height: 100svh; }
+  .slider-frame { background-attachment: scroll; }
+  .slide-copy { width: 88vw; }
+  .slide-copy h1 { margin-bottom: 24px; font-size: clamp(2.4rem, 13vw, 4rem); }
+  .slide-copy p { letter-spacing: .13em; }
+  .sea-panel, .commitment-panel, .contact-panel { padding-left: 20px; padding-right: 20px; }
+  .section-inner { width: 100%; }
+  .split-copy { gap: 24px; }
+  .gallery-grid { gap: 6px; }
 }
